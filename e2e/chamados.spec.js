@@ -1,0 +1,2 @@
+const {test,expect}=require('@playwright/test');
+test('G4 confirmar exclusão',async({page})=>{await page.goto('/');const linha=page.locator('#lista tr').filter({hasText:'Bruno'});page.once('dialog',d=>d.dismiss());await linha.getByRole('button',{name:'Excluir'}).click();await expect(linha).toHaveCount(1);page.once('dialog',d=>d.accept());await linha.getByRole('button',{name:'Excluir'}).click();await expect(linha).toHaveCount(0);});
